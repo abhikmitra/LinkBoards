@@ -12,9 +12,10 @@
     "express": "~4.14.0",
     "jade": "~1.11.0",
     "morgan": "~1.7.0",
-    "serve-favicon": "~2.3.0",
-    "watson-developer-cloud": "^2.14.0",
     "node-uuid": "^1.4.7",
-    "oauth": "^0.9.14"
+    "oauth": "^0.9.14",
+    "q": "^1.4.1",
+    "serve-favicon": "~2.3.0",
+    "watson-developer-cloud": "^2.14.0"
   }
 }
