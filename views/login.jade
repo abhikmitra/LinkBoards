@@ -1,5 +1,31 @@
 extends layout
 
 block content
-    h1= title
-    div.container.
+    div.sidePic.pull-left
+    div.sideContent.pull-right
+        .row
+            .col-lg-12.text-center
+                h3 Welcome to LinkBoards
+
+        .row
+            .col-lg-12.text-center
+                br
+                br
+                br
+                br
+                img.officeIcon(src="/images/office.png")
+                br
+                br
+                button.btn.btn-primary.text-center#signIn(onclick="login()")
+                    i.fa.fa-sign-in
+                    |&nbsp;Sign in Using Office 365
+
+    script
+        | function login() {
+        |     window.location = '#{data.auth_url}'.replace(/&amp;/g, '&');
+        | }
+
+
+
+
+

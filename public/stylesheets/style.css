@@ -1,8 +1,30 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+html, body {
+  height:100%;
+  width:100%
+}
+.sidePic{
+  height: 100%;
+  width: 70%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background:url('/images/collaboration-illustration.jpg')
+}
+.sideContent{
+  height: 100%;
+  width: 30%;
+}
+
+.officeIcon{
+
+  width: 200px;
 }

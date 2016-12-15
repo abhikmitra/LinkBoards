@@ -12,10 +12,14 @@
   ],
   "permissions": [
     "storage",
-    "tabs"
+    "tabs",
+    "cookies",
+    "*://*.herokuapp.com/*",
+    "http://localhost:3000/*"
   ],
   "background": {
     "scripts": [
+      "libraries/jquery.min.js",
       "backgroundPages/communication.js",
       "backgroundPages/background.js"
     ]
@@ -26,15 +30,16 @@
   "content_scripts": [
     {
       "matches": [
-        "http://*.office.com/*",
-        "https://*.office.com/*"
+        "http://*.herokuapp.com/auth/communicateCredsToPlugin",
+        "http://localhost:3000/auth/communicateCredsToPlugin"
       ],
       "css": [],
       "js": [
         "libraries/jquery.min.js",
         "libraries/arrive.min.js",
         "libraries/lodash.min.js",
-        "libraries/q.js"
+        "backgroundPages/communication.js",
+        "js/getTokenContentScript.js"
       ],
       "run_at": "document_end"
     }
