@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var watsonURLAnalyzer = require('../helpers/urlAnalyzer.js');
-var msGraphClient = require('../helpers/msgraphclient.js');
+// var msGraphClient = require('../helpers/msgraphclient.js');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/postURL', function(req, res, next) {
-  var urlToBePosted = req.post.url;
+  var urlToBePosted = req.body.url;
   return watsonURLAnalyzer.analyzeUrl(urlToBePosted).then(function (response) {
     return res.json({success : true, data : response});
   }, function(err){
@@ -25,12 +25,12 @@ router.get('/analyzeURLTest', function (req, res, next) {
   })
 })
 
-router.get('/testgrouppost', function(req, res, next){
-  return msGraphClient.postToGroup("test post").then(function(res){
-    return res.json({success : true});
-  }, function(err){
-    return res.json({success : false})
-  })
-})
+// router.get('/testgrouppost', function(req, res, next){
+//   return msGraphClient.postToGroup("test post").then(function(res){
+//     return res.json({success : true});
+//   }, function(err){
+//     return res.json({success : false})
+//   })
+// })
 
 module.exports = router;

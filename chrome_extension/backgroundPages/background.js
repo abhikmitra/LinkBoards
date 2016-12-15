@@ -31,17 +31,21 @@ window.widgets.getCredsFromCookies = function(data){
             o365Data.displayName = userData.displayName;
             o365Data.mail = userData.mail;
             o365Data.userPrincipalName = userData.userPrincipalName;
-            chrome.storage.sync.set({'o365Data': o365Data}, function() {
-                chrome.tabs.query({url:[
-                    "http://*.herokuapp.com/*",
-                    "http://*.localhost:*/*"
-                ]}, function callback(data){
+            getGroupDetails(accessToken).then(function (data) {
+                o365Data.groups = data.value;
+                chrome.storage.sync.set({'o365Data': o365Data}, function() {
+                    chrome.tabs.query({url:[
+                        "http://*.herokuapp.com/*",
+                        "http://*.localhost:*/*"
+                    ]}, function callback(data){
 
-                    data.forEach(function(tab){
-                        chrome.tabs.remove(tab.id);
+                        data.forEach(function(tab){
+                            chrome.tabs.remove(tab.id);
+                        });
                     });
                 });
             });
+
         });
 
     } else {
@@ -58,6 +62,16 @@ window.widgets.getCredsFromCookies = function(data){
 }
 
 function getUserDetails(accessToken) {
+    return $.ajax({
+        url: "https://graph.microsoft.com/v1.0/me/",
+        headers: {
+            "Authorization": "Bearer " + accessToken,
+            "Content-Type": "application/json"
+        }
+    });
+}
+
+function getGroupDetails(accessToken) {
     return $.ajax({
         url: "https://graph.microsoft.com/v1.0/me/",
         headers: {

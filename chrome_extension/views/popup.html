@@ -3,38 +3,79 @@
 <head>
     <link href="/libraries/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/libraries/nice-select.css" rel="stylesheet">
     <script src="/libraries/jquery.min.js"></script>
+    <script src="/libraries/masonry.js"></script>
     <script src="/libraries/lodash.min.js"></script>
+    <script src="/libraries/jquery.nice-select.min.js"></script>
     <script src="/libraries/bootstrap/js/bootstrap.js"></script>
     <link href="/css/popup.css" rel="stylesheet">
     <script src="/js/popup.js"></script>
+
 </head>
 <body>
 
-<div style="height: 130px;width: 400px">
+<div id="container" class="loading">
     <div class="outer">
         <div class="inner">
             <div class="header clearfix">
                 <div class="icon pull-left">
-                    <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw saving"></i>
-                    <i class="fa fa-bookmark fa-3x saved hide" aria-hidden="true"></i>
+                    <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw saving-show"></i>
+                    <i class="fa fa-bookmark fa-3x saved-show" aria-hidden="true"></i>
                 </div>
-                <div class="headerText pull-left saved hide">
-                    Page Saved!
+                <div class="headerText pull-left saved-show">
+                    <select id="">
+                        <option data-display="Select">Select Group</option>
+                        <option value="1">Some option</option>
+                        <option value="2">Another option</option>
+                        <option value="3" disabled>A disabled option</option>
+                        <option value="4">Potato</option>
+                    </select>
                 </div>
-                <div class="headerText pull-left saving">
-                    Page Saving!
+                <div class="saved-show pull-right">
+                   <button class="btn btn-success">
+                       <i class="fa fa-paper-plane fa-2x" aria-hidden="true"></i>
+                   </button>
+                </div>
+                <div class="headerText pull-left saving-show">
+                    Analyzing Page
                 </div>
             </div>
-            <div class="existingTags saved hide">
-                <i class="tags-icon fa fa-tags" aria-hidden="true"></i>
-                  <span class="tags">
-                  Politics
-                  </span>
-                  <span class="tags">
-                  Donald trump
-                  </span>
+
+            <div class="panel-group existingTags saved-show" id="accordion" role="tablist" aria-multiselectable="false" >
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <i class="fa fa-envelope-open" aria-hidden="true"></i>
+                                Personalise
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+                        <div class="panel-body">
+                            <textarea class="form-control" rows="3" placeholder="Enter additional hashtags or personalise your messages"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <i class="fa fa-tags" aria-hidden="true"></i>
+                               HashTags
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+                            <div  id="tagDisplay">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </div>
     </div>
 </div>
