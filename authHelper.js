@@ -13,7 +13,7 @@ var credentials = {
   client_id: '0010b593-c877-46a2-ba7a-7c9a5cdcf805',
   client_secret: 'veHirFGGkaJvWWSBpcJtKVP',
   redirect_uri: 'http://localhost:3000/auth/login',
-  scope: 'User.Read Mail.Send offline_access'
+  scope: 'User.Read Mail.Send Group.ReadWrite.All offline_access'
 };
 
 /**

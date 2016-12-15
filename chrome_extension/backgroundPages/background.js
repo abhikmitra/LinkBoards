@@ -3,6 +3,21 @@
  */
 window.widgets = window.widgets || {};
 
+
+chrome.runtime.onInstalled.addListener(function(tab) {
+
+    chrome.storage.sync.get('o365Data', function(info) {
+        if(info.o365Data && info.o365Data.ACCESS_TOKEN_CACHE_KEY) {
+
+        } else {
+            chrome.tabs.create({
+                url: 'http://localhost:3000/auth/login'
+            });
+        }
+    })
+});
+
+
 window.widgets.getCredsFromCookies = function(data){
     chrome.tabs.query({
         active:true
@@ -17,12 +32,28 @@ window.widgets.getCredsFromCookies = function(data){
             o365Data.mail = userData.mail;
             o365Data.userPrincipalName = userData.userPrincipalName;
             chrome.storage.sync.set({'o365Data': o365Data}, function() {
+                chrome.tabs.query({url:[
+                    "http://*.herokuapp.com/*",
+                    "http://*.localhost:*/*"
+                ]}, function callback(data){
 
+                    data.forEach(function(tab){
+                        chrome.tabs.remove(tab.id);
+                    });
+                });
             });
         });
 
     } else {
+        chrome.tabs.query({url:[
+            "http://*.herokuapp.com/*",
+            "http://*.localhost:*/*"
+        ]}, function callback(data){
 
+            data.forEach(function(tab){
+                chrome.tabs.remove(tab.id);
+            });
+        });
     }
 }
 
@@ -38,14 +69,6 @@ function getUserDetails(accessToken) {
 
 chrome.browserAction.onClicked.addListener(function(tab) {
 
-    chrome.storage.sync.get('o365Data', function(info) {
-        if(info.o365Data && info.o365Data.ACCESS_TOKEN_CACHE_KEY) {
 
-        } else {
-            chrome.tabs.create({
-                url: 'http://localhost:3000/auth/login'
-            });
-        }
-    })
 
 })
