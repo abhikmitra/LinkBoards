@@ -1,0 +1,42 @@
+{
+  "manifest_version": 2,
+  "name": "TrelloToPlanner",
+  "description": "This extension is an extension to the group poster website",
+  "version": "1.0",
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "web_accessible_resources": [
+    "views/*",
+    "css/*",
+    "js/*",
+    "libraries/*"
+  ],
+  "permissions": [
+    "storage",
+    "tabs"
+  ],
+  "background": {
+    "scripts": [
+      "backgroundPages/communication.js",
+      "backgroundPages/background.js"
+    ]
+  },
+  "browser_action":{
+    "default_icon": "icon.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*.office.com/*",
+        "https://*.office.com/*"
+      ],
+      "css": [],
+      "js": [
+        "libraries/jquery.min.js",
+        "libraries/arrive.min.js",
+        "libraries/lodash.min.js",
+        "libraries/q.js"
+      ],
+      "run_at": "document_end"
+    }
+  ]
+}
