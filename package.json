@@ -9,6 +9,7 @@
     "body-parser": "~1.15.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
+    "email-templates": "^2.5.4",
     "express": "~4.14.0",
     "install": "^0.8.2",
     "jade": "~1.11.0",

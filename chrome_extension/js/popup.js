@@ -6,6 +6,9 @@
     var groups = [];
     var tags = [];
     var userEmail = "";
+    var title = "";
+    var text = "";
+    var url = "";
     var useruserPrincipalName= "";
     function initialize() {
         $(".saved-show").hide();
@@ -37,13 +40,28 @@
         var group = _.find(groups, function (group) {
             return group.mail === groupMailSelected;
         });
-        makeBackEndRequest(group.id, group.mail, tags, $("#additionalContent").val(), userEmail );
-        window.close();
+        makeBackEndRequest(group.id, group.mail, tags, $("#additionalContent").val(), userEmail, accessToken, title, text.substring(0,100) + "....." , url ).then(function () {
+            window.close();
+        })
+
     }
 
 
 
-    function makeBackEndRequest(groupId, groupMail, tags, additionalText, userEmail) {
+    function makeBackEndRequest(groupId, groupMail, tags, additionalText, userEmail, accessToken, title, preview , url) {
+        console.log(arguments);
+        debugger;
+        return $.post("http://localhost:3000/postToGroup",{
+            groupId:groupId,
+            groupMail:groupMail,
+            tags:tags,
+            additionalText:additionalText,
+            userEmail:userEmail,
+            accessToken:accessToken,
+            title:title,
+            preview:preview,
+            url:url
+        })
 
     }
 
@@ -98,6 +116,9 @@
     }
     function parseResultForTags(data) {
         tags = [] ;
+        text = data.text;
+        title = data.title;
+        url = data.url;
         parseAuthors(data.authors.names, tags);
         parseConcepts(data.concepts, tags);
         parseKeywords(data.keywords, tags);
@@ -131,6 +152,14 @@
         }
 
         if (author.toLowerCase().indexOf(" reuters")) {
+            return false;
+        }
+
+        if (author.toLowerCase().indexOf("  bureau")) {
+            return false;
+        }
+
+        if (author.toLowerCase().indexOf("  ist")) {
             return false;
         }
 
