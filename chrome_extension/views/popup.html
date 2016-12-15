@@ -7,33 +7,36 @@
     <script src="/libraries/lodash.min.js"></script>
     <script src="/libraries/bootstrap/js/bootstrap.js"></script>
     <link href="/css/popup.css" rel="stylesheet">
+    <script src="/js/popup.js"></script>
 </head>
-<body >
-    <div class="saving">
-        <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
-    </div>
-    <div class="saved hide" style="height: 130px;width: 400px">
-        <div class="outer">
-            <div class="inner">
-                <div class="header clearfix">
-                    <div class="icon pull-left">
-                        <i class="fa fa-bookmark fa-3x" aria-hidden="true"></i>
-                    </div>
-                    <div class="headerText pull-left ">
-                        Page Saved!
-                    </div>
+<body>
+
+<div style="height: 130px;width: 400px">
+    <div class="outer">
+        <div class="inner">
+            <div class="header clearfix">
+                <div class="icon pull-left">
+                    <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw saving"></i>
+                    <i class="fa fa-bookmark fa-3x saved hide" aria-hidden="true"></i>
                 </div>
-                <div class="existingTags">
-                    <i class="tags-icon fa fa-tags" aria-hidden="true"></i>
-      <span class="tags">
-      Politics
-      </span>
-      <span class="tags">
-      Donald trump
-      </span>
+                <div class="headerText pull-left saved hide">
+                    Page Saved!
                 </div>
+                <div class="headerText pull-left saving">
+                    Page Saving!
+                </div>
+            </div>
+            <div class="existingTags saved hide">
+                <i class="tags-icon fa fa-tags" aria-hidden="true"></i>
+                  <span class="tags">
+                  Politics
+                  </span>
+                  <span class="tags">
+                  Donald trump
+                  </span>
             </div>
         </div>
     </div>
+</div>
 </body>
 </html>
