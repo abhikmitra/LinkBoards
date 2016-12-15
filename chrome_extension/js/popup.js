@@ -2,7 +2,11 @@
  * Created by abhikmitra on 12/15/16.
  */
 (function () {
-
+    var accessToken;
+    var groups = [];
+    var tags = [];
+    var userEmail = "";
+    var useruserPrincipalName= "";
     function initialize() {
         $(".saved-show").hide();
         $(".saved-hide").hide();
@@ -10,16 +14,17 @@
         $(".saving-hide").hide();
         $('select').niceSelect();
         $('.collapse').collapse()
+        $('#shareToGroup').click(shareToGroup)
     }
 
 
 
     chrome.tabs.query({active:true},function(tabs){
         initialize();
+        console.log("tabs");
         if (tabs.length > 0) {
             var url = tabs[0].url;
             console.log("this url is ", url);
-            url = "http://www.firstpost.com/business/demonetisation-day-37-new-notes-far-more-secure-says-ea-secy-shaktikanta-das-3155700.html";
             bookmarkUrl(url).then(function (data) {
                 if(data.success) {
                     parseResultForTags(data.data);
@@ -27,6 +32,20 @@
             });
         }
     });
+    function shareToGroup() {
+        var groupMailSelected = $(".nice-select span.current").text();
+        var group = _.find(groups, function (group) {
+            return group.mail === groupMailSelected;
+        });
+        makeBackEndRequest(group.id, group.mail, tags, $("#additionalContent").val(), userEmail );
+        window.close();
+    }
+
+
+
+    function makeBackEndRequest(groupId, groupMail, tags, additionalText, userEmail) {
+
+    }
 
 
     function bookmarkUrl(url) {
@@ -35,8 +54,18 @@
         })
     }
     function onFinishLoadingTags(tags) {
-        debugger;
-        $("#container").removeClass("loading");
+        chrome.storage.sync.get('o365Data', function(info) {
+            if (info.o365Data && info.o365Data.ACCESS_TOKEN_CACHE_KEY) {
+                accessToken = info.o365Data.ACCESS_TOKEN_CACHE_KEY;
+                userEmail = info.o365Data.mail;
+                useruserPrincipalName = info.o365Data.userPrincipalName;
+                if(info.o365Data.groups) {
+                    groups = info.o365Data.groups
+                    populateGroupListInUi(_.map(info.o365Data.groups, "mail"));
+                }
+            }
+        });
+            $("#container").removeClass("loading");
         $("#container").addClass("loaded");
         $(".saved-show").show();
         $(".saved-hide").hide();
@@ -57,8 +86,18 @@
             });
         });
     }
+
+    function populateGroupListInUi(groupMails) {
+        groupMails.forEach(function (groupMail) {
+            $("#groupList").append("<option value='"
+                + groupMail +
+                "'>" + groupMail +
+                "</option>")
+        });
+        $('select').niceSelect('update');
+    }
     function parseResultForTags(data) {
-        var tags = [] ;
+        tags = [] ;
         parseAuthors(data.authors.names, tags);
         parseConcepts(data.concepts, tags);
         parseKeywords(data.keywords, tags);

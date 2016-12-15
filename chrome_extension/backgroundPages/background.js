@@ -22,7 +22,6 @@ window.widgets.getCredsFromCookies = function(data){
     chrome.tabs.query({
         active:true
     }, function (tab) {
-        debugger;
     });
 
     if(data.ACCESS_TOKEN_CACHE_KEY) {
@@ -31,7 +30,8 @@ window.widgets.getCredsFromCookies = function(data){
             o365Data.displayName = userData.displayName;
             o365Data.mail = userData.mail;
             o365Data.userPrincipalName = userData.userPrincipalName;
-            getGroupDetails(accessToken).then(function (data) {
+            getGroupDetails(data.ACCESS_TOKEN_CACHE_KEY).then(function (data) {
+                debugger;
                 o365Data.groups = data.value;
                 chrome.storage.sync.set({'o365Data': o365Data}, function() {
                     chrome.tabs.query({url:[
@@ -73,7 +73,7 @@ function getUserDetails(accessToken) {
 
 function getGroupDetails(accessToken) {
     return $.ajax({
-        url: "https://graph.microsoft.com/v1.0/me/",
+        url: "https://graph.microsoft.com/v1.0/groups/",
         headers: {
             "Authorization": "Bearer " + accessToken,
             "Content-Type": "application/json"

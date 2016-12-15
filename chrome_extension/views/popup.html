@@ -18,22 +18,30 @@
 <div id="container" class="loading">
     <div class="outer">
         <div class="inner">
-            <div class="header clearfix">
-                <div class="icon pull-left">
-                    <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw saving-show"></i>
-                    <i class="fa fa-bookmark fa-3x saved-show" aria-hidden="true"></i>
+            <div>
+                <div class="saving-show text-center">
+                    <h3>Analyzing Page</h3>
+                </div>
+                <div class="thecube saving-show">
+                    <div class="cube c1"></div>
+                    <div class="cube c2"></div>
+                    <div class="cube c4"></div>
+                    <div class="cube c3"></div>
+                </div>
+            </div>
+            <div class="header clearfix saved-show">
+                <div class="icon pull-left saved-show">
+
+                    <!--<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw "></i>-->
+                    <i class="fa fa-bookmark fa-3x " aria-hidden="true"></i>
                 </div>
                 <div class="headerText pull-left saved-show">
-                    <select id="">
+                    <select id="groupList">
                         <option data-display="Select">Select Group</option>
-                        <option value="1">Some option</option>
-                        <option value="2">Another option</option>
-                        <option value="3" disabled>A disabled option</option>
-                        <option value="4">Potato</option>
                     </select>
                 </div>
                 <div class="saved-show pull-right">
-                   <button class="btn btn-success">
+                   <button class="btn btn-success" id="shareToGroup">
                        <i class="fa fa-paper-plane fa-2x" aria-hidden="true"></i>
                    </button>
                 </div>
@@ -54,7 +62,7 @@
                     </div>
                     <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
                         <div class="panel-body">
-                            <textarea class="form-control" rows="3" placeholder="Enter additional hashtags or personalise your messages"></textarea>
+                            <textarea id="additionalContent" class="form-control" rows="3" placeholder="Enter additional hashtags or personalise your messages"></textarea>
                         </div>
                     </div>
                 </div>
