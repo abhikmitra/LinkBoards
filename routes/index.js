@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var watsonURLAnalyzer = require('../watson/urlAnalyzer.js');
+var watsonURLAnalyzer = require('../helpers/urlAnalyzer.js');
+var msGraphClient = require('../helpers/msgraphclient.js');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -21,6 +22,14 @@ router.get('/analyzeURLTest', function (req, res, next) {
     return res.json({success : true, data : response});
   }, function(err){
     return res.json({ success : false, error : err});
+  })
+})
+
+router.get('/testgrouppost', function(req, res, next){
+  return msGraphClient.postToGroup("test post").then(function(res){
+    return res.json({success : true});
+  }, function(err){
+    return res.json({success : false})
   })
 })
 
