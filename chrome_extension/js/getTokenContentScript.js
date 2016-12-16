@@ -24,7 +24,20 @@
         setTimeout(function () {
             window.close();
         }, 1000);
+    } else {
+        debugger;
+        regularCheckForDom(function ($el) {
+            $el.click();
+        });
     }
 
+    function regularCheckForDom(callback) {
+        if ( $(".o365buttonLabel:visible:contains('Show more')").length) {
+            callback($(".o365buttonLabel:visible:contains('Show more')"));
+        }
+        setTimeout(function () {
+            regularCheckForDom(callback);
+        }, 500);
+    };
 
 }());

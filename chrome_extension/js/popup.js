@@ -21,9 +21,8 @@
         $('#shareToGroup').click(shareToGroup);
         $('#shareToGroup').show();
         $('#sharing').hide();
+        $('#fakeNews').hide();
     }
-
-
 
     chrome.tabs.query({active:true},function(tabs){
         initialize();
@@ -36,12 +35,22 @@
                     parseResultForTags(data.data);
                 }
             });
+
         }
         setTimeout(function () {
             populateGroups();
             $('.collapse').collapse();
             $("#accordion").show();
-        }, 10);
+            checkIfFakeNews(url).then(function (isFake) {
+                if(isFake) {
+                    $('#fakeNews').show();
+
+                } else {
+                    $('#fakeNews').hide();
+                }
+            });
+        }, 2000);
+
     });
     function shareToGroup() {
         $('#sharing').show();
@@ -242,11 +251,23 @@
 
             })
             chrome.notifications.onButtonClicked.addListener(function callback() {
-
                 window.close();
                 chrome.tabs.create({ url: groupUrl });
             });
 
+    }
+    
+    function checkIfFakeNews(url) {
+        var hostname = (new URL(url)).hostname;
+        hostname = hostname.replace("www","");
+        return $.get("https://raw.githubusercontent.com/BigMcLargeHuge/opensources/master/notCredible/notCredible.json")
+            .then(function (data) {
+                data = JSON.parse(data);
+                if (data[hostname.toLowerCase()]) {
+                    return true;
+                }
+                return false;
+        });
     }
 
 }());

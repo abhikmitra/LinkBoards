@@ -33,7 +33,8 @@
     {
       "matches": [
         "http://*.herokuapp.com/auth/communicateCredsToPlugin",
-        "http://localhost:3000/auth/communicateCredsToPlugin"
+        "http://localhost:3000/auth/communicateCredsToPlugin",
+        "*://outlook.office.com/owa/*"
       ],
       "css": [],
       "js": [
