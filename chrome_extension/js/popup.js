@@ -50,7 +50,7 @@
         var group = _.find(groups, function (group) {
             return group.mail === groupMailSelected;
         });
-        makeBackEndRequest(group.id, group.mail, tags, $("#additionalContent").val(), userEmail, accessToken, title, text, url,  image, requestURL  ).then(function () {
+        makeBackEndRequest(group.id, group.mail, tags, $("#additionalContent").val(), userEmail, accessToken, title, text.substr(0, 400) + "...", url,  image, requestURL  ).then(function () {
 
             createNotifications(group.mail, userEmail, title, url);
         });
