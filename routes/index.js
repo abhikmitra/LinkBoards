@@ -3,7 +3,6 @@ var router = express.Router();
 var watsonURLAnalyzer = require('../helpers/urlAnalyzer.js');
 var graphHelper = require('../helpers/graphHelper.js');
 var emailHelper = require('../helpers/emailHelper.js');
-// var msGraphClient = require('../helpers/msgraphclient.js');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -19,8 +18,6 @@ router.post('/postURL', function(req, res, next) {
     return res.json({ success : false, error : err});
   })
 });
-
-
 
 
 router.get('/analyzeURLTest', function (req, res, next) {
@@ -41,14 +38,12 @@ router.post('/postToGroup', function (req, res, next) {
       req.body.additionalText).then(function (text) {
 
     graphHelper.postToGroup(text, req.body.groupId, req.body.accessToken).then(function (response) {
-
       return res.json({success : true, data : response});
     }, function () {
       return res.json({ success : false, error : err});
     })
 
   });
-
 })
 
 
