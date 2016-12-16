@@ -11,7 +11,7 @@ module.exports =  {
 function postToGroup(accessToken, data) {
     var deferred = Q.defer();
     var body = {
-        "topic": data.title,
+        "topic": data.title != null ? data.title.substr(0, 100) + "..." : data.title,
         "threads": [{
             "posts": [{
                 "body": {
