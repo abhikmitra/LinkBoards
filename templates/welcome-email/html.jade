@@ -1,121 +1,218 @@
-doctype html
-html
+doctype transitional
+html(xmlns='http://www.w3.org/1999/xhtml')
     head
-        meta(name='viewport', content='width=device-width')
-        meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
-        title Simple Transactional Email
+        meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+        title [SUBJECT]
         style(type='text/css').
-            /* -------------------------------------
-            INLINED WITH https://putsmail.com/inliner
-            ------------------------------------- */
-            /* -------------------------------------
-            RESPONSIVE AND MOBILE FRIENDLY STYLES
-            ------------------------------------- */
-            @media only screen and (max-width: 620px) {
-                table[class=body] h1 {
-                    font-size: 28px !important;
-                    margin-bottom: 10px !important; }
-                table[class=body] p,
-                table[class=body] ul,
-                table[class=body] ol,
-                table[class=body] td,
-                table[class=body] span,
-                table[class=body] a {
-                    font-size: 16px !important; }
-                table[class=body] .wrapper,
-                table[class=body] .article {
-                    padding: 10px !important; }
-                table[class=body] .content {
-                    padding: 0 !important; }
-                table[class=body] .container {
-                    padding: 0 !important;
-                    width: 100% !important; }
-                table[class=body] .main {
-                    border-left-width: 0 !important;
-                    border-radius: 0 !important;
-                    border-right-width: 0 !important; }
-                table[class=body] .btn table {
-                    width: 100% !important; }
-                table[class=body] .btn a {
-                    width: 100% !important; }
-                table[class=body] .img-responsive {
+            body {
+                padding-top: 0 !important;
+                padding-bottom: 0 !important;
+                padding-top: 0 !important;
+                padding-bottom: 0 !important;
+                margin:0 !important;
+                width: 100% !important;
+                -webkit-text-size-adjust: 100% !important;
+                -ms-text-size-adjust: 100% !important;
+                -webkit-font-smoothing: antialiased !important;
+            }
+            .tableContent img {
+                border: 0 !important;
+                display: block !important;
+                outline: none !important;
+            }
+            a{
+                color:#382F2E;
+            }
+            p, h2{
+                color:#382F2E;
+                margin:0;
+            }
+            div,p,ul,h2{
+                margin:0;
+            }
+            h2{
+                color:#DAB679;
+                font-size:21px;
+                font-weight:normal;
+            }
+            p{
+            }
+            a.link1{
+                font-weight:bold;
+                color:#DAB679;
+                font-size:13px;
+                text-decoration:none;font-weight:bold;
+            }
+            a.link2{
+                padding:8px 20px;
+                border-radius:5px;
+                -moz-border-radius:5px;
+                -webkit-border-radius:5px;
+                color:#DAB679;
+                font-size:13px;
+                font-weight:bold;
+                text-decoration:none;
+                border:1px solid #DAB679;
+                font-weight:bold;
+                background:#FFFAF3;
+            }
+            @media only screen and (max-width:480px)
+            {
+                table[class="MainContainer"], td[class="cell"]
+                {
+                    width: 100% !important;
+                    height:auto !important;
+                }
+                td[class="specbundle"]
+                {
+                    width: 100% !important;
+                    float:left !important;
+                    font-size:13px !important;
+                    line-height:17px !important;
+                    display:block !important;
+                    padding-bottom:5px !important;
+                }
+                td[class="specbundle2"]
+                {
+                    width: 100% !important;
+                    float:left !important;
+                    font-size:14px !important;
+                    line-height:18px !important;
+                    display:block !important;
+                    padding-bottom:45px !important;
+                }
+                td[class="spechide"]
+                {
+                    display:none !important;
+                }
+                img[class="banner"]
+                {
+                    width: 100% !important;
                     height: auto !important;
-                    max-width: 100% !important;
-                    width: auto !important; }}
-            /* -------------------------------------
-            PRESERVE THESE STYLES IN THE HEAD
-            ------------------------------------- */
-            @media all {
-                .ExternalClass {
-                    width: 100%; }
-                .ExternalClass,
-                .ExternalClass p,
-                .ExternalClass span,
-                .ExternalClass font,
-                .ExternalClass td,
-                .ExternalClass div {
-                    line-height: 100%; }
-                .apple-link a {
-                    color: inherit !important;
-                    font-family: inherit !important;
-                    font-size: inherit !important;
-                    font-weight: inherit !important;
-                    line-height: inherit !important;
-                    text-decoration: none !important; }
-                .btn-primary table td:hover {
-                    background-color: #34495e !important; }
-                .btn-primary a:hover {
-                    background-color: #34495e !important;
-                    border-color: #34495e !important; } }
-    body(style='background-color:#f6f6f6;font-family:sans-serif;-webkit-font-smoothing:antialiased;font-size:14px;line-height:1.4;margin:0;padding:0;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;')
-        each thing in tags
-            p #{thing}
+                }
+                td[class="left_pad"]
+                {
+                    padding-left:15px !important;
+                    padding-right:15px !important;
+                }
+            }
+            @media only screen and (max-width:540px)
+            {
+                table[class="MainContainer"], td[class="cell"]
+                {
+                    width: 100% !important;
+                    height:auto !important;
+                }
+                td[class="specbundle"]
+                {
+                    width: 100% !important;
+                    float:left !important;
+                    font-size:13px !important;
+                    line-height:17px !important;
+                    display:block !important;
+                    padding-bottom:5px !important;
+                }
+                td[class="specbundle2"]
+                {
+                    width: 100% !important;
+                    float:left !important;
+                    font-size:14px !important;
+                    line-height:18px !important;
+                    display:block !important;
+                    padding-bottom:45px !important;
+                }
+                td[class="spechide"]
+                {
+                    display:none !important;
+                }
+                img[class="banner"]
+                {
+                    width: 100% !important;
+                    height: auto !important;
+                }
+                td[class="left_pad"]
+                {
+                    padding-left:15px !important;
+                    padding-right:15px !important;
+                }
+            }
+        script.swatch.active(type='colorScheme').
+            {
+            "name":"Default",
+            "bgBody":"ffffff",
+            "link":"DAB679",
+            "color":"000000",
+            "bgItem":"ffffff",
+            "title":"DAB679"
+            }
+    body(paddingwidth='0', paddingheight='0', bgcolor='#d1d3d4', style='padding-top: 0; padding-bottom: 0; padding-top: 0; padding-bottom: 0; background-repeat: repeat; width: 100% !important; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -webkit-font-smoothing: antialiased;', offset='0', toppadding='0', leftpadding='0')
+        table.tableContent(width='100%', border='0', cellspacing='0', cellpadding='0', align='center', bgcolor='#ffffff', style='font-family:Georgia, times, sans-serif;')
+            tbody
+                tr
+                    td
+                        table.MainContainer(width='600', border='0', cellspacing='0', cellpadding='0', align='center', style='font-family:Georgia, times, sans-serif;', bgcolor='#ffffff')
+                            tbody
+                                tr
+                                    td
+                                        table(width='100%', border='0', cellspacing='0', cellpadding='0')
+                                            tbody
+                                                tr
+                                                    td(valign='top', width='20', align='left')  
+                                                    // =========================== The header ===========================
+                                                    // =========================== The body ===========================
+                                                    td(valign='top', align='center', width='560')
+                                                        table(width='100%', border='0', cellspacing='0', cellpadding='0')
+                                                            tbody
+                                                                tr
+                                                                    td.movableContentContainer
+                                                                        .movableContent(style='border: 0px; padding-top: 0px; position: relative;')
+                                                                            table(width='100%', border='0', cellspacing='0', cellpadding='0', align='center')
+                                                                                tr
+                                                                                    td
+                                                                                        .contentEditableContainer.contentImageEditable
+                                                                                            .contentEditable
+                                                                                                img.banner(src=image, alt='featured image', data-default='placeholder', data-max-width='600', width='600', height='350', border='0')
+                                                                                tr
+                                                                                    td(height='25')
+                                                                        .movableContent(style='border: 0px; padding-top: 0px; position: relative;')
+                                                                            table(width='100%', border='0', cellspacing='0', cellpadding='0', align='center')
+                                                                                tr
+                                                                                    td(align='left', valign='top')
+                                                                                        .contentEditableContainer.contentTextEditable
+                                                                                            .contentEditable
+                                                                                                h2 #{title} 
+                                                                                tr
+                                                                                    td(align='left', valign='top')
+                                                                                        .contentEditableContainer.contentTextEditable
+                                                                                            .contentEditable
+                                                                                                p(style='font-size:13px;')
+                                                                                                    | #{text}
+                                                                                tr
+                                                                                    td(align='right', valign='top')
+                                                                                        .contentEditableContainer.contentTextEditable
+                                                                                            .contentEditable
+                                                                                                a.link2(target='_blank', href=url) Read more
+                                                                        .movableContent(style='border: 0px; padding-top: 0px; position: relative;')
+                                                                            table(width='100%', border='0', cellspacing='0', cellpadding='0', align='center', style="display:none")
+                                                                                tr
+                                                                                    td(height='40')  
+                                                                                tr
+                                                                                    td(style='border:1px solid #333333;border-radius:10px;-moz-border-radius:10px;-webkit-border-radius:10px;')
+                                                                                        table(width='100%', border='0', cellspacing='0', cellpadding='0', align='center')
+                                                                                            tr
+                                                                                                td(width='30')
+                                                                                                td(width='503', align='left', valign='top')
+                                                                                                    .contentEditableContainer.contentTextEditable
+                                                                                                        .contentEditable
+                                                                                                            h2 On the runways
+                                                                                                td(width='25')
+                                                                                            tr
+                                                                                                td(width='30')
+                                                                                                td(width='503', align='left', valign='top')
+                                                                                                    .contentEditableContainer.contentTextEditable
+                                                                                                        .contentEditable
+                                                                                                            p(style='font-size:13px;')
+                                                                                                                | #{tags}
+                                                                                                td(width='25')
+                                                    td(valign='top', width='20')  
 
-        table.body(border='0', cellpadding='0', cellspacing='0', style='border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;background-color:#f6f6f6;width:100%;')
-            tr
-                td(style='font-family:sans-serif;font-size:14px;vertical-align:top;')  
-                td.container(style='font-family:sans-serif;font-size:14px;vertical-align:top;display:block;max-width:580px;padding:10px;width:580px;Margin:0 auto !important;')
-                    .content(style='box-sizing:border-box;display:block;Margin:0 auto;max-width:580px;padding:10px;')
-                        // START CENTERED WHITE CONTAINER
-                        span.preheader(style='color:transparent;display:none;height:0;max-height:0;max-width:0;opacity:0;overflow:hidden;mso-hide:all;visibility:hidden;width:0;') This is preheader text. Some clients will show this text as a preview.
-                        table.main(style='border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;background:#fff;border-radius:3px;width:100%;')
-                            // START MAIN CONTENT AREA
-                            tr
-                                td.wrapper(style='font-family:sans-serif;font-size:14px;vertical-align:top;box-sizing:border-box;padding:20px;')
-                                    table(border='0', cellpadding='0', cellspacing='0', style='border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;width:100%;')
-                                        tr
-                                            td(style='font-family:sans-serif;font-size:14px;vertical-align:top;')
-                                                p(style='font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;Margin-bottom:15px;') Hi there,
-                                                p(style='font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;Margin-bottom:15px;')
-                                                    | Sometimes you just want to send a simple HTML email with a simple design and clear call to action. This is it.
-                                                table.btn.btn-primary(border='0', cellpadding='0', cellspacing='0', style='border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;box-sizing:border-box;width:100%;')
-                                                    tbody
-                                                        tr
-                                                            td(align='left', style='font-family:sans-serif;font-size:14px;vertical-align:top;padding-bottom:15px;')
-                                                                table(border='0', cellpadding='0', cellspacing='0', style='border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;width:100%;width:auto;')
-                                                                    tbody
-                                                                        tr
-                                                                            td(style='font-family:sans-serif;font-size:14px;vertical-align:top;background-color:#ffffff;border-radius:5px;text-align:center;background-color:#3498db;')
-                                                                                a(href='http://htmlemail.io', target='_blank', style='text-decoration:underline;background-color:#ffffff;border:solid 1px #3498db;border-radius:5px;box-sizing:border-box;color:#3498db;cursor:pointer;display:inline-block;font-size:14px;font-weight:bold;margin:0;padding:12px 25px;text-decoration:none;text-transform:capitalize;background-color:#3498db;border-color:#3498db;color:#ffffff;') Call To Action
-                                                p(style='font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;Margin-bottom:15px;')
-                                                    | This is a really simple email template. Its sole purpose is to get the recipient to click the button with no distractions.
-                                                p(style='font-family:sans-serif;font-size:14px;font-weight:normal;margin:0;Margin-bottom:15px;') Good luck! Hope it works.
-                            // END MAIN CONTENT AREA
-                        // START FOOTER
-                        .footer(style='clear:both;padding-top:10px;text-align:center;width:100%;')
-                            table(border='0', cellpadding='0', cellspacing='0', style='border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;width:100%;')
-                                tr
-                                    td.content-block(style='font-family:sans-serif;font-size:14px;vertical-align:top;color:#999999;font-size:12px;text-align:center;')
-                                        span.apple-link(style='color:#999999;font-size:12px;text-align:center;') Company Inc, 3 Abbey Road, San Francisco CA 94102
-                                        br
-                                        |                      Don't like these emails?
-                                        a(href='http://i.imgur.com/CScmqnj.gif', style='color:#3498db;text-decoration:underline;color:#999999;font-size:12px;text-align:center;') Unsubscribe
-                                        | .
-                                tr
-                                    td.content-block.powered-by(style='font-family:sans-serif;font-size:14px;vertical-align:top;color:#999999;font-size:12px;text-align:center;')
-                                        | Powered by
-                                        a(href='http://htmlemail.io', style='color:#3498db;text-decoration:underline;color:#999999;font-size:12px;text-align:center;text-decoration:none;') HTMLemail
-                                        | .
-                        // END FOOTER
-                        // END CENTERED WHITE CONTAINER
-                td(style='font-family:sans-serif;font-size:14px;vertical-align:top;')  

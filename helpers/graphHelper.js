@@ -5,18 +5,18 @@ var request = require("request");
 var Q = require("q");
 
 module.exports =  {
-    postToGroup : postToGroup,
+    postToGroup : postToGroup
 }
 
-function postToGroup(email, groupId, accessToken) {
+function postToGroup(accessToken, data) {
     var deferred = Q.defer();
     var body = {
-        "topic": "New Conversation Topic",
+        "topic": data.title,
         "threads": [{
             "posts": [{
                 "body": {
                     "contentType": "html",
-                    "content": email
+                    "content": data.html
                 },
                 "newParticipants": []
             }]
@@ -29,7 +29,7 @@ function postToGroup(email, groupId, accessToken) {
 
 
     var options = {
-        uri: 'https://graph.microsoft.com/v1.0/groups/' + groupId + '/conversations',
+        uri: 'https://graph.microsoft.com/v1.0/groups/' + data.groupId + '/conversations',
         method: 'POST',
         json: body,
         headers : headers

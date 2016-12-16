@@ -10,6 +10,8 @@
     var text = "";
     var url = "";
     var useruserPrincipalName= "";
+    var image = "";
+    var requestURL = "";
     function initialize() {
         $(".saved-show").hide();
         $(".saved-hide").hide();
@@ -44,7 +46,7 @@
         var group = _.find(groups, function (group) {
             return group.mail === groupMailSelected;
         });
-        makeBackEndRequest(group.id, group.mail, tags, $("#additionalContent").val(), userEmail, accessToken, title, text.substring(0,100) + "....." , url ).then(function () {
+        makeBackEndRequest(group.id, group.mail, tags, $("#additionalContent").val(), userEmail, accessToken, title, text, url,  image, requestURL  ).then(function () {
 
             createNotifications(group.mail, userEmail, title, url);
         });
@@ -54,7 +56,7 @@
 
 
 
-    function makeBackEndRequest(groupId, groupMail, tags, additionalText, userEmail, accessToken, title, preview , url) {
+    function makeBackEndRequest(groupId, groupMail, tags, additionalText, userEmail, accessToken, title, preview , url, image, requestURL) {
         console.log(arguments);
         debugger;
         return $.post("http://localhost:3000/postToGroup",{
@@ -66,11 +68,12 @@
             accessToken:accessToken,
             title:title,
             preview:preview,
-            url:url
+            url:url,
+            image: image,
+            requestURL: requestURL
         })
 
     }
-
 
     function bookmarkUrl(url) {
         return $.post("http://localhost:3000/postURL",{
@@ -129,6 +132,8 @@
         text = data.text;
         title = data.title;
         url = data.url;
+        image = data.image;
+        requestURL = data.requestURL;
         parseAuthors(data.authors.names, tags);
         parseConcepts(data.concepts, tags);
         parseKeywords(data.keywords, tags);
