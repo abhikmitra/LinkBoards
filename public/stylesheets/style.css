@@ -13,11 +13,6 @@ html, body {
 .sidePic{
   height: 100%;
   width: 70%;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  background:url('/images/collaboration-illustration.jpg')
 }
 .sideContent{
   height: 100%;
@@ -26,5 +21,5 @@ html, body {
 
 .officeIcon{
 
-  width: 200px;
+  width: 250px;
 }

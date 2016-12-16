@@ -1,24 +1,32 @@
 extends layout
 
 block content
-    div.sidePic.pull-left
+    div.deeptext(style="width:60%;position:absolute;bottom:40px;left:10px;z-index:100;")
+        h2(style="color:white;font-weight:400!important;font-size:25px!important")
+            | LinkBoards allow to share content with people across your team irrespective of the medium they want to consume in
+        br
+        br
+        br
+        div.smallText(style="color:white;")
+            span Made with &nbsp;
+            span
+                i.fa.fa-heart
+                |&nbsp; by the Groups team
+    div.sidePic.pull-left(style="position:relative;background-color:#000000")
+        img(style="height:100%;width:100%;opacity:0.6",src="/images/collaboration-illustration.jpg")
     div.sideContent.pull-right
         .row
             .col-lg-12.text-center
-                h3 Welcome to LinkBoards
-
+                //h1 LinkBoards
+                //hr(style="margin-bottom:0px")
+                img.officeIcon(src="/images/icon.png")
+                img(style="width:200px")(src="/images/office_icon.png")
+                hr
         .row
             .col-lg-12.text-center
-                br
-                br
-                br
-                br
-                img.officeIcon(src="/images/office.png")
-                br
-                br
-                button.btn.btn-primary.text-center#signIn(onclick="login()")
+                button.btn.btn-default.text-center#signIn(onclick="login()", style="border-radius:0px;color:#E83E1A;border-color:#E83E1A")
                     i.fa.fa-sign-in
-                    |&nbsp;Sign in Using Office 365
+                    |&nbsp;Sign in to LinkBoards Using Office 365
 
     script
         | function login() {

@@ -6,12 +6,12 @@ extends layout
 block content
     div.container
         .row
-            .col.col-lg-12.text-center(style="padding-top:200px")
-                img.officeIcon(src="/images/office.png")
-                h2
-                    |You have connected your 0ffice 365 account successfully!
+            .col.col-lg-12.text-center(style="padding-top:100px")
+                img.officeIcon(src="/images/icon.png")
+                h2(style="color:#E83E1A")
+                    |Please wait while we fetch your details from Office Graph!
     div#sendCredsToBackground
     script
         | setTimeout(function () {
         |             window.close();
-        |         }, 1000);
+        |         }, 1500);
