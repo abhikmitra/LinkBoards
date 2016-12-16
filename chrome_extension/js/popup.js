@@ -227,7 +227,7 @@
         chrome.notifications.create(
             'notify2', {
                 type : chrome.notifications.TemplateType.BASIC,
-                iconUrl: "small_icon.jpg",
+                iconUrl: "small_icon.png",
                 // imageUrl: "icon.png",
                 title: "Posted!",
                 message: "Your link has been posted to group " + groupEmail,
