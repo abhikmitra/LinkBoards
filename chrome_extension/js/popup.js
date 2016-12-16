@@ -34,6 +34,7 @@
                 }
             });
         }
+        populateGroups();
     });
     function shareToGroup() {
         var groupMailSelected = $(".nice-select span.current").text();
@@ -41,8 +42,10 @@
             return group.mail === groupMailSelected;
         });
         makeBackEndRequest(group.id, group.mail, tags, $("#additionalContent").val(), userEmail, accessToken, title, text.substring(0,100) + "....." , url ).then(function () {
-            window.close();
-        })
+
+            createNotifications(group.mail, userEmail, title, url);
+        });
+
 
     }
 
@@ -71,7 +74,8 @@
             url:url
         })
     }
-    function onFinishLoadingTags(tags) {
+
+    function populateGroups() {
         chrome.storage.sync.get('o365Data', function(info) {
             if (info.o365Data && info.o365Data.ACCESS_TOKEN_CACHE_KEY) {
                 accessToken = info.o365Data.ACCESS_TOKEN_CACHE_KEY;
@@ -83,6 +87,9 @@
                 }
             }
         });
+    }
+    function onFinishLoadingTags(tags) {
+
             $("#container").removeClass("loading");
         $("#container").addClass("loaded");
         $(".saved-show").show();
@@ -197,6 +204,34 @@
                 });
             }
         })
+    }
+    
+    function createNotifications(groupEmail, userEmail, title, url) {
+        var domain = userEmail.replace(/.*@/, "");
+        var groupUrl = "https://outlook.office.com/owa/?realm=" + domain + "&path=/group/"+groupEmail+"/mail";
+        chrome.notifications.create(
+            'notify2', {
+                type : chrome.notifications.TemplateType.BASIC,
+                iconUrl: "icon.png",
+                // imageUrl: "icon.png",
+                title: "Posted!",
+                message: "Your link has been posted to group " + groupEmail,
+                contextMessage: title,
+                priority: 2,
+                buttons: [{
+                    title: "See Your Board"
+                }
+                ]
+
+            }, function (notificationId) {
+
+            })
+            chrome.notifications.onButtonClicked.addListener(function callback() {
+
+                chrome.tabs.create({ url: groupUrl });
+            });
+            window.close();
+
     }
 
 }());

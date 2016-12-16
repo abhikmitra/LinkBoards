@@ -5,7 +5,7 @@ window.widgets = window.widgets || {};
 
 
 chrome.runtime.onInstalled.addListener(function(tab) {
-
+    createNotifications();
     chrome.storage.sync.get('o365Data', function(info) {
         if(info.o365Data && info.o365Data.ACCESS_TOKEN_CACHE_KEY) {
 
@@ -17,11 +17,47 @@ chrome.runtime.onInstalled.addListener(function(tab) {
     })
 });
 
+function createNotifications(groupEmail, userEmail, title) {
+    // chrome.notifications.create(
+    //     'notify1', {
+    //         type: chrome.notifications.TemplateType.IMAGE,
+    //         iconUrl: "icon.png",
+    //         imageUrl: "icon.png",
+    //         title: "Posted!",
+    //         message: "Your link has been posted to group name",
+    //         contextMessage: "The title of the link",
+    //         priority: 2
+    //         // buttons: [{
+    //         //     title: "See post",
+    //         //     iconUrl: "https://cdn4.iconfinder.com/data/icons/eldorado-mobile/40/eye_2-512.png"
+    //         // },
+    //         //     {
+    //         //         title: "Show Links",
+    //         //         iconUrl: "https://cdn4.iconfinder.com/data/icons/web-links/512/41-512.png"
+    //         //     }
+    //         // ]
+    //
+    //     }, function (notificationId) {
+    //
+    //         setTimeout(function() {
+    //             chrome.notifications.clear(notificationId, function(wasCleared) {
+    //                 debugger;
+    //                 console.log(wasCleared);
+    //             });
+    //         }, 4000);
+    //         debugger;
+    //     });
+
+
+
+    
+}
 
 window.widgets.getCredsFromCookies = function(data){
     chrome.tabs.query({
         active:true
     }, function (tab) {
+        debugger;
     });
 
     if(data.ACCESS_TOKEN_CACHE_KEY) {
