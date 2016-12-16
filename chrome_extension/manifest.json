@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "LinkBoarder",
-  "description": "This extension is an extension to the group poster website",
+  "name": "LinkBoard",
+  "description": "Link Board, alows you to share content across Office Groups",
   "version": "1.0",
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "web_accessible_resources": [
