@@ -144,6 +144,9 @@
         parseTaxonomy(data.taxonomy, tags);
         onFinishLoadingTags(tags);
         console.log(tags);
+        if (data.title) {
+            $("#additionalContent").val(data.title);
+        }
     }
     function parseAuthors(authors, tags) {
         authors.forEach(function (author) {
