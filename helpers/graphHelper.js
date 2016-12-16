@@ -36,7 +36,7 @@ function postToGroup(accessToken, data) {
     };
 
     request(options, function (error, response, body) {
-        if (!error) {
+        if (!body.error && !error) {
             console.log(body.id) // Print the shortened url.
             return deferred.resolve(body);
         }
