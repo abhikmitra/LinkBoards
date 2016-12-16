@@ -17,7 +17,6 @@
         $(".saved-hide").hide();
         $(".saving-show").show();
         $(".saving-hide").hide();
-        $('select').niceSelect();
         $('#shareToGroup').click(shareToGroup);
         $('#shareToGroup').show();
         $('#sharing').hide();
@@ -138,7 +137,7 @@
                 "'>" + groupMail +
                 "</option>")
         });
-        $('select').niceSelect('update');
+        $('#groupList').multiselect({nonSelectedText: 'Select Group', numberDisplayed: 1});
     }
     function parseResultForTags(data) {
         tags = [] ;
