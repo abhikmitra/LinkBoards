@@ -16,7 +16,6 @@
         $(".saving-show").show();
         $(".saving-hide").hide();
         $('select').niceSelect();
-        $('.collapse').collapse()
         $('#shareToGroup').click(shareToGroup)
     }
 
@@ -34,7 +33,11 @@
                 }
             });
         }
-        populateGroups();
+        setTimeout(function () {
+            populateGroups();
+            $('.collapse').collapse();
+            $("#accordion").show();
+        }, 10);
     });
     function shareToGroup() {
         var groupMailSelected = $(".nice-select span.current").text();
