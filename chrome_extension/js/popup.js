@@ -48,7 +48,7 @@
                     $('#fakeNews').hide();
                 }
             });
-        }, 2000);
+        }, 10);
 
     });
     function shareToGroup() {
