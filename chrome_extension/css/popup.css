@@ -26,12 +26,12 @@ html,body {
 
     margin-top: 0px;
     padding:15px;
-    padding-bottom: 0px;;
+    padding-bottom: 0px;
+    padding-top: 0px;
 }
 
 .header {
-    padding: 15px;
-    padding-bottom: 20px;
+    padding: 5px;
     background: #F4F9FD;
 }
 .tags {
@@ -60,7 +60,7 @@ html,body {
 }
 
 .loading {
-    height:230px;
+    height:170px;
     width:500px;
 }
 
@@ -70,10 +70,10 @@ html,body {
 /*.loading .inner{*/
     /*height:100%*/
 /*}*/
-/*.loaded {*/
-    /*height:70px;*/
-    /*width:600px;*/
-/*}*/
+.loaded {
+    height:170px;
+    width:500px;
+}
 
 .panel-default > .panel-heading {
     color: #333;
@@ -181,6 +181,9 @@ html,body {
 .nice-select{
     border-radius: 0px !important;
     border: 1px solid #1072BD;
+    height: 30px;
+    line-height: 28px;
+
 }
 
 hr {
@@ -189,4 +192,11 @@ hr {
 }
 .panel-default > .panel-heading {
     color: #1072BD !important;
+}
+.btn {
+    border-radius: 0px;
+}
+
+.panel-group .panel {
+    border-radius: 0px;
 }

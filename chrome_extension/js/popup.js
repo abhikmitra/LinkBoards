@@ -18,7 +18,9 @@
         $(".saving-show").show();
         $(".saving-hide").hide();
         $('select').niceSelect();
-        $('#shareToGroup').click(shareToGroup)
+        $('#shareToGroup').click(shareToGroup);
+        $('#shareToGroup').show();
+        $('#sharing').hide();
     }
 
 
@@ -42,6 +44,8 @@
         }, 10);
     });
     function shareToGroup() {
+        $('#sharing').show();
+        $('#shareToGroup').hide();
         var groupMailSelected = $(".nice-select span.current").text();
         var group = _.find(groups, function (group) {
             return group.mail === groupMailSelected;
@@ -236,9 +240,9 @@
             })
             chrome.notifications.onButtonClicked.addListener(function callback() {
 
+                window.close();
                 chrome.tabs.create({ url: groupUrl });
             });
-            window.close();
 
     }
 
