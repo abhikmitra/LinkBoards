@@ -63,7 +63,7 @@ LinkReports.getReport = function (link) {
         link: link
     }})
         .then(function (row) {
-            if (row && row.length == 0) {
+            if (!row || row.length == 0) {
                 return deferred.reject("Cache entry not found for link", link)
             }
             deferred.resolve(row.report);
