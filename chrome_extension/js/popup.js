@@ -18,8 +18,9 @@
         $(".saving-show").show();
         $(".saving-hide").hide();
         $('select').niceSelect();
-        $('.collapse').collapse()
-        $('#shareToGroup').click(shareToGroup)
+        $('#shareToGroup').click(shareToGroup);
+        $('#shareToGroup').show();
+        $('#sharing').hide();
     }
 
 
@@ -36,15 +37,24 @@
                 }
             });
         }
+        setTimeout(function () {
+            populateGroups();
+            $('.collapse').collapse();
+            $("#accordion").show();
+        }, 10);
     });
     function shareToGroup() {
+        $('#sharing').show();
+        $('#shareToGroup').hide();
         var groupMailSelected = $(".nice-select span.current").text();
         var group = _.find(groups, function (group) {
             return group.mail === groupMailSelected;
         });
-        makeBackEndRequest(group.id, group.mail, tags, $("#additionalContent").val(), userEmail, accessToken, title, text, url, image, requestURL ).then(function () {
-            window.close();
-        })
+        makeBackEndRequest(group.id, group.mail, tags, $("#additionalContent").val(), userEmail, accessToken, title, text, url,  image, requestURL  ).then(function () {
+
+            createNotifications(group.mail, userEmail, title, url);
+        });
+
 
     }
 
@@ -74,7 +84,8 @@
             url:url
         })
     }
-    function onFinishLoadingTags(tags) {
+
+    function populateGroups() {
         chrome.storage.sync.get('o365Data', function(info) {
             if (info.o365Data && info.o365Data.ACCESS_TOKEN_CACHE_KEY) {
                 accessToken = info.o365Data.ACCESS_TOKEN_CACHE_KEY;
@@ -86,6 +97,9 @@
                 }
             }
         });
+    }
+    function onFinishLoadingTags(tags) {
+
             $("#container").removeClass("loading");
         $("#container").addClass("loaded");
         $(".saved-show").show();
@@ -202,6 +216,34 @@
                 });
             }
         })
+    }
+    
+    function createNotifications(groupEmail, userEmail, title, url) {
+        var domain = userEmail.replace(/.*@/, "");
+        var groupUrl = "https://outlook.office.com/owa/?realm=" + domain + "&path=/group/"+groupEmail+"/mail";
+        chrome.notifications.create(
+            'notify2', {
+                type : chrome.notifications.TemplateType.BASIC,
+                iconUrl: "icon.png",
+                // imageUrl: "icon.png",
+                title: "Posted!",
+                message: "Your link has been posted to group " + groupEmail,
+                contextMessage: title,
+                priority: 2,
+                buttons: [{
+                    title: "See Your Board"
+                }
+                ]
+
+            }, function (notificationId) {
+
+            })
+            chrome.notifications.onButtonClicked.addListener(function callback() {
+
+                window.close();
+                chrome.tabs.create({ url: groupUrl });
+            });
+
     }
 
 }());

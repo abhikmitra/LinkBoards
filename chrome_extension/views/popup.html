@@ -18,39 +18,32 @@
 <div id="container" class="loading">
     <div class="outer">
         <div class="inner">
-            <div>
-                <div class="saving-show text-center">
-                    <h3>Analyzing Page</h3>
-                </div>
-                <div class="thecube saving-show">
-                    <div class="cube c1"></div>
-                    <div class="cube c2"></div>
-                    <div class="cube c4"></div>
-                    <div class="cube c3"></div>
-                </div>
-            </div>
-            <div class="header clearfix saved-show">
-                <div class="icon pull-left saved-show">
+
+            <div class="header clearfix">
+                <div class="icon pull-left">
 
                     <!--<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw "></i>-->
-                    <i class="fa fa-bookmark fa-3x " aria-hidden="true"></i>
+                    <i class="fa fa-bookmark" style="font-size: 33px;" aria-hidden="true"></i>
                 </div>
-                <div class="headerText pull-left saved-show">
+                <div class="headerText pull-left">
                     <select id="groupList">
-                        <option data-display="Select">Select Group</option>
+                        <option data-display="Select Your Link Board">Select Link Board</option>
                     </select>
                 </div>
                 <div class="saved-show pull-right">
                    <button class="btn btn-success" id="shareToGroup">
-                       <i class="fa fa-paper-plane fa-2x" aria-hidden="true"></i>
+                       <i class="fa fa-paper-plane" aria-hidden="true"></i>
                    </button>
+                    <button class="btn btn-success disabled" id="sharing">
+                        <i class="fa fa-circle-o-notch fa-spin fa-fw" aria-hidden="true"></i>
+                    </button>
                 </div>
-                <div class="headerText pull-left saving-show">
-                    Analyzing Page
-                </div>
+                <!--<div class="headerText pull-left saving-hide">-->
+                    <!--Analyzing Page-->
+                <!--</div>-->
             </div>
-
-            <div class="panel-group existingTags saved-show" id="accordion" role="tablist" aria-multiselectable="false" >
+            <hr>
+            <div class="panel-group existingTags" id="accordion" role="tablist" aria-multiselectable="false" style="display: none" >
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingTwo">
                         <h4 class="panel-title">
@@ -77,7 +70,18 @@
                     </div>
                     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                         <div class="panel-body">
-                            <div  id="tagDisplay">
+                            <div class="saving-show" style="height: 190px">
+                                <div class="saving-show text-center">
+                                    <h3>Analyzing Page</h3>
+                                </div>
+                                <div class="thecube saving-show">
+                                    <div class="cube c1"></div>
+                                    <div class="cube c2"></div>
+                                    <div class="cube c4"></div>
+                                    <div class="cube c3"></div>
+                                </div>
+                            </div>
+                            <div  id="tagDisplay" class="saved-show">
                             </div>
                         </div>
                     </div>
