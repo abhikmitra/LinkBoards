@@ -4,11 +4,14 @@
     <link href="/libraries/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="/libraries/nice-select.css" rel="stylesheet">
+    <!-- Include the plugin's CSS and JS: -->
     <script src="/libraries/jquery.min.js"></script>
     <script src="/libraries/masonry.js"></script>
     <script src="/libraries/lodash.min.js"></script>
     <script src="/libraries/jquery.nice-select.min.js"></script>
     <script src="/libraries/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/libraries/bootstrap/js/bootstrap-multiselect.js"></script>
+    <link rel="stylesheet" href="/libraries/bootstrap/css/bootstrap-multiselect.css" type="text/css"/>
     <link href="/css/popup.css" rel="stylesheet">
     <script src="/js/popup.js"></script>
 
@@ -26,8 +29,11 @@
                     <i class="fa fa-bookmark" style="font-size: 33px;" aria-hidden="true"></i>
                 </div>
                 <div class="headerText pull-left">
-                    <select id="groupList">
+                    <!--<select id="groupList">
                         <option data-display="Share to O365 Group">Select Group</option>
+                    </select>-->
+                    <!-- Build your select: -->
+                    <select id="groupList" multiple="multiple">
                     </select>
                 </div>
                 <div class="saved-show pull-right">
