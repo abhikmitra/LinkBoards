@@ -60,6 +60,9 @@ function searchInElasticSearch(tags, title) {
                 }
             }).then(function (resp) {
                 var hits = resp.hits.hits;
+                hits =_.filter(hits, function(hit) {
+                    return hit._score > 0.6
+                });
                 return deferred.resolve(_.map(hits, function (el) {
                     return el._source;
                 }));
