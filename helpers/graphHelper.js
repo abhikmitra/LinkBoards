@@ -9,13 +9,40 @@ module.exports =  {
 
 function postToGroup(accessToken, data) {
     var deferred = Q.defer();
+    var groupIds = data["groupIds[]"];
+    if (!groupIds || groupIds.length == 0) {
+        return deferred.promise.reject("No group ids were passed to post");
+    }
+    var result = [];
+    var deferredArray = [];
+    groupIds.forEach(function(groupId){
+        deferredArray.push(postLinkToGroup(groupId, accessToken, data));
+    });
+    Q.allSettled(deferredArray).then(function (values) {
+        for (i=0; i< values.length ; i++) {
+            if (values[i].state == "fulfilled") {
+                result.push({groupId : groupIds[i], success : true});
+            } else {
+                result.push({ groupId: groupIds[i], success : false, reason: values[i].reason})
+            }
+        }
+        deferred.resolve(result);
+    }, function (error) {
+        deferred.reject(error);
+    });
+
+    return deferred.promise;
+}
+
+function postLinkToGroup(groupId, accessToken, post) {
+    var deferred = Q.defer();
     var body = {
-        "topic": data.title != null ? data.title.substr(0, 100) + "..." : data.title,
+        "topic": post.title != null ? post.title.substr(0, 100) + "..." : post.title,
         "threads": [{
             "posts": [{
                 "body": {
                     "contentType": "html",
-                    "content": data.html
+                    "content": post.html
                 },
                 "newParticipants": []
             }]
@@ -24,11 +51,9 @@ function postToGroup(accessToken, data) {
     var headers = {
         "Authorization": "Bearer " + accessToken,
         "Content-Type": "application/json"
-    }
-
-
+    };
     var options = {
-        uri: 'https://graph.microsoft.com/v1.0/groups/' + data.groupId + '/conversations',
+        uri: 'https://graph.microsoft.com/v1.0/groups/' + groupId + '/conversations',
         method: 'POST',
         json: body,
         headers : headers

@@ -80,9 +80,11 @@
         if (!selectedGroupsToSend.length) {
             return;
         }
-        selectedGroupsForPosting = selectedGroupsToSend[0];
+        var selectedGroupIds = selectedGroupsToSend.map(function(group) {
+            return group.id;
+        });
 
-        makeBackEndRequest(selectedGroupsToSend[0].id, selectedGroupsToSend[0].mail, tags, $("#subject").val(), userEmail, accessToken, title, text.substr(0, 400) + "...", url,  image, requestURL  ).then(function () {
+        makeBackEndRequest(selectedGroupIds, selectedGroupsToSend[0].mail, tags, $("#subject").val(), userEmail, accessToken, title, text.substr(0, 400) + "...", url,  image, requestURL  ).then(function () {
             onSuccess(selectedGroupsToSend, userEmail);
             // createNotifications(selectedGroupsToSend[0].mail, userEmail, title, url);
         }, function () {
@@ -115,11 +117,11 @@
 
 
 
-    function makeBackEndRequest(groupId, groupMail, tags, subject, userEmail, accessToken, title, preview , url, image, requestURL) {
+    function makeBackEndRequest(groupIds, groupMail, tags, subject, userEmail, accessToken, title, preview , url, image, requestURL) {
         console.log(arguments);
         debugger;
         return $.post("http://localhost:3000/postToGroup",{
-            groupId:groupId,
+            groupIds:groupIds,
             groupMail:groupMail,
             tags:tags,
             subject:subject,
