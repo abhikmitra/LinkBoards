@@ -4,10 +4,11 @@
 var Q = require("q");
 var EmailTemplate = require('email-templates').EmailTemplate
 var path = require('path')
-
+var recommendationHelper = require("./recommendationHelper");
 var templateDir = path.join(__dirname, '../templates', 'welcome-email')
 var welcomeEmail = new EmailTemplate(templateDir)
 function generateEmail(metadata) {
+    recommendationHelper.indexInElastic(metadata.requestURL, metadata.title, metadata["tags[]"]);
     var deferred = Q.defer();
     var combinedTags = metadata["tags[]"].join(",");
     welcomeEmail.render({

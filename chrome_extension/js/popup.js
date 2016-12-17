@@ -5,6 +5,7 @@
     var accessToken;
     var groups = [];
     var tags = [];
+    var recommendations = [];
     var userEmail = "";
     var title = "";
     var text = "";
@@ -24,6 +25,11 @@
         $('#shareToGroup').show();
         $('#sharing').hide();
         $('#fakeNews').hide();
+        $(".recommendation-show").hide();
+        $(".recommending-show").show();
+        // $('.panel.panel-default').each(function (el) {
+        //     $(this).addClass('magictime slideRightReturn');
+        // })
     }
 
     chrome.tabs.query({active:true},function(tabs){
@@ -158,7 +164,7 @@
 
         tags.forEach(function (tag) {
             $("#tagDisplay").append(
-                "<span class='tags'>" +
+                "<span class='tags hvr-grow-shadow'>" +
                     tag +
                 "</span>"
             )
@@ -182,6 +188,7 @@
     }
     function parseResultForTags(data) {
         tags = [] ;
+        recommendations = [] ;
         text = data.text;
         title = data.title;
         url = data.url;
@@ -194,10 +201,58 @@
         parseTaxonomy(data.taxonomy, tags);
         onFinishLoadingTags(tags);
         console.log(tags);
+
         if (data.title) {
             $("#additionalContent").val(data.title);
         }
+        getRecommendations(tags,title).then(function (data) {
+            if(!data.data && !data.data.length) {
+                return;
+            }
+            recommendations = data.data.map(function (el) {
+                return {
+                    title:el.title,
+                    url:el.url,
+                }
+            });
+            renderRecommendations(recommendations)
+        });
     }
+
+    function renderRecommendations(recommendations) {
+        $(".recommendation-show").show();
+        $(".recommending-show").hide();
+        recommendations.forEach(function (el) {
+            if (el.title == title) {
+                return;
+            }
+
+            if (el.url == url) {
+                return;
+            }
+
+            var html = "" +
+                "<tr>" +
+                "<td style='vertical-align: middle;'>" + el.title +
+                "</td>"+
+                "<td style='text-align: right'>" +
+                "<a class='btn btn-default hvr-overline-from-center' target='_blank' href='" + el.url + "'>" +
+                '<i class="fa fa-eye" aria-hidden="true"></i>&nbsp;View' +
+                "</a>" +
+                "</td>"+
+                "</tr>"
+            $("#recommendationsTable").append(html);
+        });
+    }
+
+    function getRecommendations(tags, title) {
+        return $.post("http://localhost:3000/recommendations",{
+            tags:tags,
+            title:title
+        })
+    }
+
+
     function parseAuthors(authors, tags) {
         authors.forEach(function (author) {
             if(checkForAuthor(author)) {

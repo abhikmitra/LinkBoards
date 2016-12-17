@@ -32,6 +32,7 @@ function analyzeUrl(url, isTest) {
                 console.log(JSON.stringify(response, null, 2));
                 response.requestURL = url;
                 // add entry to cache
+
                 linkReports.upsertReport(url, response).then(function(report){
                     console.log("successfully added cache entry for url", url)
                 }, function(err){

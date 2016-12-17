@@ -12,6 +12,8 @@
     <script src="/libraries/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" src="/libraries/bootstrap/js/bootstrap-multiselect.js"></script>
     <link rel="stylesheet" href="/libraries/bootstrap/css/bootstrap-multiselect.css" type="text/css"/>
+    <link href="/css/magic.min.css" rel="stylesheet">
+    <link href="/css/hover-min.css" rel="stylesheet">
     <link href="/css/popup.css" rel="stylesheet">
     <script src="/js/popup.js"></script>
 
@@ -37,8 +39,8 @@
                     </select>
                 </div>
                 <div class="saved-show pull-right">
-                   <button class="btn btn-success" id="shareToGroup">
-                       <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                   <button class="btn btn-success hvr-icon-bounce plane" id="shareToGroup">
+                       <!--<i class="fa fa-paper-plane" aria-hidden="true"></i>-->
                    </button>
                     <button class="btn btn-success disabled success-hide" id="sharing">
                         <i class="fa fa-circle-o-notch fa-spin fa-fw" aria-hidden="true"></i>
@@ -111,6 +113,34 @@
                             </div>
                             <div  id="tagDisplay" class="saved-show">
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="heading0">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse0" aria-expanded="true" aria-controls="collapse0">
+                                <i class="fa fa-tags" aria-hidden="true"></i>
+                                Recommendations
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapse0" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading0">
+                        <div class="panel-body">
+                            <div class="saving-show" style="height: 190px">
+                                <div class="recommending-show text-center">
+                                    <h3>Analyzing Page</h3>
+                                </div>
+                                <div class="thecube saving-show">
+                                    <div class="cube c1"></div>
+                                    <div class="cube c2"></div>
+                                    <div class="cube c4"></div>
+                                    <div class="cube c3"></div>
+                                </div>
+                            </div>
+                            <table class="recommendation-show table table-condensed table-hover table-striped" id="recommendationsTable">
+
+                            </table>
                         </div>
                     </div>
                 </div>

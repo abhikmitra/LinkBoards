@@ -3,7 +3,6 @@
  */
 var request = require("request");
 var Q = require("q");
-
 module.exports =  {
     postToGroup : postToGroup
 }

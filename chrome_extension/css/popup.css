@@ -210,3 +210,11 @@ hr {
     color:#1072BD !important;
 
 }
+
+.hvr-icon-bounce:before {
+    content: "\f1d8";
+}
+.plane {
+    height: 30px;
+    line-height: 3px;
+}
