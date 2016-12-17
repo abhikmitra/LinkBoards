@@ -10,6 +10,10 @@ module.exports =  {
 function postToGroup(accessToken, data) {
     var deferred = Q.defer();
     var groupIds = data["groupIds[]"];
+    if (groupIds && !Array.isArray(groupIds)) {
+        groupIds = [groupIds];
+    }
+
     if (!groupIds || groupIds.length == 0) {
         return deferred.promise.reject("No group ids were passed to post");
     }
