@@ -82,7 +82,7 @@
         }
         selectedGroupsForPosting = selectedGroupsToSend[0];
 
-        makeBackEndRequest(selectedGroupsToSend[0].id, selectedGroupsToSend[0].mail, tags, $("#additionalContent").val(), userEmail, accessToken, title, text.substr(0, 400) + "...", url,  image, requestURL  ).then(function () {
+        makeBackEndRequest(selectedGroupsToSend[0].id, selectedGroupsToSend[0].mail, tags, $("#subject").val(), userEmail, accessToken, title, text.substr(0, 400) + "...", url,  image, requestURL  ).then(function () {
             onSuccess(selectedGroupsToSend, userEmail);
             // createNotifications(selectedGroupsToSend[0].mail, userEmail, title, url);
         }, function () {
@@ -115,14 +115,14 @@
 
 
 
-    function makeBackEndRequest(groupId, groupMail, tags, additionalText, userEmail, accessToken, title, preview , url, image, requestURL) {
+    function makeBackEndRequest(groupId, groupMail, tags, subject, userEmail, accessToken, title, preview , url, image, requestURL) {
         console.log(arguments);
         debugger;
         return $.post("http://localhost:3000/postToGroup",{
             groupId:groupId,
             groupMail:groupMail,
             tags:tags,
-            additionalText:additionalText,
+            subject:subject,
             userEmail:userEmail,
             accessToken:accessToken,
             title:title,
@@ -203,7 +203,7 @@
         console.log(tags);
 
         if (data.title) {
-            $("#additionalContent").val(data.title);
+            $("#subject").val(data.title);
         }
         getRecommendations(tags,title).then(function (data) {
             if(!data.data && !data.data.length) {

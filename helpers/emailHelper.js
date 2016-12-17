@@ -12,7 +12,7 @@ function generateEmail(metadata) {
     var deferred = Q.defer();
     var combinedTags = metadata["tags[]"].join(",");
     welcomeEmail.render({
-        title: metadata.title,
+        title: metadata.subject,
         text: metadata.preview,
         url: metadata.requestURL,
         tags:combinedTags,
