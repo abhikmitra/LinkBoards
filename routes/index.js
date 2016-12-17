@@ -34,7 +34,7 @@ router.post('/postToGroup', function (req, res, next) {
     req.body.html = html;
     graphHelper.postToGroup(req.body.accessToken, req.body).then(function (response) {
       return res.json({success : true, data : response});
-    }, function () {
+    }, function (err) {
       return res.json({ success : false, error : err});
     })
 

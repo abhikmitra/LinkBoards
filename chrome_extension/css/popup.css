@@ -200,3 +200,13 @@ hr {
 .panel-group .panel {
     border-radius: 0px;
 }
+
+#successTable{
+    color:#1072BD !important;
+
+}
+#successTable .btn{
+    border-color:#1072BD !important;
+    color:#1072BD !important;
+
+}

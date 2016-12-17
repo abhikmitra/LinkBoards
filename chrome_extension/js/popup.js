@@ -12,11 +12,14 @@
     var useruserPrincipalName= "";
     var image = "";
     var requestURL = "";
+    var selectedGroupsForPosting = [];
     function initialize() {
         $(".saved-show").hide();
         $(".saved-hide").hide();
         $(".saving-show").show();
         $(".saving-hide").hide();
+        $(".success-show").hide();
+        $(".success-hide").hide();
         $('#shareToGroup').click(shareToGroup);
         $('#shareToGroup').show();
         $('#sharing').hide();
@@ -33,6 +36,8 @@
                 if(data.success) {
                     parseResultForTags(data.data);
                 }
+            }, function () {
+                alert("Token expired, please login again to continue");
             });
 
         }
@@ -54,16 +59,52 @@
     function shareToGroup() {
         $('#sharing').show();
         $('#shareToGroup').hide();
-        var groupMailSelected = $(".nice-select span.current").text();
-        var group = _.find(groups, function (group) {
-            return group.mail === groupMailSelected;
+        var selectedGroups = $('#groupList option:selected').map(function(a, item){return item.value;});
+        var selectedGroupsToSend = [];
+        $.each(selectedGroups,function(index, groupMailSelected) {
+            var selectedGroupJSON = _.find(groups, function (group) {
+                return group.mail === groupMailSelected;
+            });
+            if(selectedGroupJSON) {
+                selectedGroupsToSend.push(selectedGroupJSON);
+            }
+
         });
-        makeBackEndRequest(group.id, group.mail, tags, $("#additionalContent").val(), userEmail, accessToken, title, text.substr(0, 400) + "...", url,  image, requestURL  ).then(function () {
 
-            createNotifications(group.mail, userEmail, title, url);
+        if (!selectedGroupsToSend.length) {
+            return;
+        }
+        selectedGroupsForPosting = selectedGroupsToSend[0];
+
+        makeBackEndRequest(selectedGroupsToSend[0].id, selectedGroupsToSend[0].mail, tags, $("#additionalContent").val(), userEmail, accessToken, title, text.substr(0, 400) + "...", url,  image, requestURL  ).then(function () {
+            onSuccess(selectedGroupsToSend, userEmail);
+            // createNotifications(selectedGroupsToSend[0].mail, userEmail, title, url);
+        }, function () {
+            alert("Token expired, please login again");
         });
 
 
+    }
+    
+    function onSuccess(selectedGroupsToSend, userEmail) {
+        $(".success-show").show();
+        $(".success-hide").hide();
+        var domain = userEmail.replace(/.*@/, "");
+        selectedGroupsToSend.forEach(function (group) {
+
+            var groupUrl = "https://outlook.office.com/owa/?realm=" + domain + "&path=/group/"+group.mail+"/mail";
+            var html = "" +
+                "<tr>" +
+                    "<td style='vertical-align: middle;'>" + group.mail +
+                    "</td>"+
+                    "<td style='text-align: right'>" +
+                        "<a class='btn btn-default' target='_blank' href='" + groupUrl + "'>" +
+                            '<i class="fa fa-eye" aria-hidden="true"></i>&nbsp;View' +
+                        "</a>" +
+                    "</td>"+
+                "</tr>"
+            $("#successTable").append(html);
+        });
     }
 
 
@@ -146,6 +187,7 @@
         url = data.url;
         image = data.image;
         requestURL = data.requestURL;
+        console.log(data);
         parseAuthors(data.authors.names, tags);
         parseConcepts(data.concepts, tags);
         parseKeywords(data.keywords, tags);
@@ -165,31 +207,31 @@
     }
     function checkForAuthor(author) {
 
-        if (author.toLowerCase().indexOf(" staff")) {
+        if (author.toLowerCase().indexOf(" staff") !== -1) {
             return false;
         }
 
-        if (author.toLowerCase().indexOf(" times")) {
+        if (author.toLowerCase().indexOf(" times") !== -1) {
             return false;
         }
 
-        if (author.toLowerCase().indexOf(" correspondent")) {
+        if (author.toLowerCase().indexOf(" correspondent")!== -1) {
             return false;
         }
 
-        if (author.toLowerCase().indexOf(" reporter")) {
+        if (author.toLowerCase().indexOf(" reporter")!== -1) {
             return false;
         }
 
-        if (author.toLowerCase().indexOf(" reuters")) {
+        if (author.toLowerCase().indexOf(" reuters")!== -1) {
             return false;
         }
 
-        if (author.toLowerCase().indexOf("  bureau")) {
+        if (author.toLowerCase().indexOf("  bureau")!== -1) {
             return false;
         }
 
-        if (author.toLowerCase().indexOf("  ist")) {
+        if (author.toLowerCase().indexOf("  ist")!== -1) {
             return false;
         }
 

@@ -40,7 +40,7 @@
                    <button class="btn btn-success" id="shareToGroup">
                        <i class="fa fa-paper-plane" aria-hidden="true"></i>
                    </button>
-                    <button class="btn btn-success disabled" id="sharing">
+                    <button class="btn btn-success disabled success-hide" id="sharing">
                         <i class="fa fa-circle-o-notch fa-spin fa-fw" aria-hidden="true"></i>
                     </button>
                 </div>
@@ -55,6 +55,23 @@
                     <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> This url seems to be from a site flagged for incorrect news.
                 </div>
                 <br/>
+                <div class="panel panel-default success-show">
+                    <div class="panel-heading" role="tab" id="headingThree">
+                        <h4 class="panel-title">
+                            <a class="collapsed" style="color: #1D9A71" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                                See your post
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse in " role="tabpanel" aria-labelledby="headingTwo" >
+                        <div class="panel-body">
+                            <table class="table table-condensed table-hover table-striped" id="successTable">
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingTwo">
                         <h4 class="panel-title">

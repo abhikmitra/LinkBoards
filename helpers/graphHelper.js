@@ -40,6 +40,9 @@ function postToGroup(accessToken, data) {
             console.log(body.id) // Print the shortened url.
             return deferred.resolve(body);
         }
+        if(body.error) {
+            return deferred.reject(body.error.code);
+        }
         deferred.reject(error);
     });
     return deferred.promise;
